@@ -18,22 +18,20 @@ table = soup.find_all(name = 'div', attrs={'class':'col-main'})
 tabel_str = str(table)
 
 df = pd.read_html(tabel_str)[0]
-print(df)
-df.info()
+#df.info()
 
 lista = []
 for i in df['P']:
     lista.append(i)
 lista2 = []
 
-for i in df['Times.2']:
-    i.split(" >>")
-    lista2.append(i)
+for i in range(len(df['Times.2'])):
+    a = ''
+    a = df['Times.2'][i]
+    a = a[:-3]
+    df['Times.2'][i] = a
 
-print(lista2)
+    
 
-# for i in df['Times.2']:
-#     df['Times.2'][0]
-#     print(df['Times.2'])
-# df.plot(kind='bar', x='Times.2', y='P')
-# plt.show()
+df.plot(kind='bar', x='Times.2', y='P')
+plt.show()
